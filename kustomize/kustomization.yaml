@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - hpa.yaml
   - deployment.yaml
+  - stress-deployment.yml
   - service.yaml
 
