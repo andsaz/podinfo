@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: container-stress
-  #namespace: default
+  namespace: default
   labels:
     app: stress
 spec:
