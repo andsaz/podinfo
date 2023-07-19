@@ -1,0 +1,25 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Provider
+metadata:
+  name: gssitam
+  namespace: podinfo
+spec:
+  type: generic
+  address: https://gssit-commonservicesvoa2monitor-prod-function-app.azurewebsites.net/api/sendNotification/?code=NLQP2dUw0xv-ZdIqgADr_WdqtwMYGzYNHm9tZ-EvQ8ajAzFu6Z2aTQ==&emails=andriej.sazanowicz@dnv.com
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Alert
+metadata:
+  name: errors
+  namespace: podinfo
+spec:
+  providerRef:
+    name: gssitam
+  eventSeverity: error
+  eventSources:
+  - kind: Kustomization
+    name: '*'
+    namespace: podinfo
+  - kind: GitRepository
+    name: '*'
+    namespace: podinfo
