@@ -4,10 +4,17 @@ metadata:
   name: gssitam
   namespace: podinfo
 spec:
-  # type: generic
   type: msteams
-  address: https://dnv.webhook.office.com/webhookb2/4b31200c-ced7-4b3e-9d46-45fae3c13d3e@adf10e2b-b6e9-41d6-be2f-c12bb566019c/IncomingWebhook/82cf9ad1a88e4eee84e4614f9e90a050/45152777-d411-484d-bb6d-a8643c7b6dcd
-  #address: https://gssit-commonservicesvoa2monitor-prod-function-app.azurewebsites.net/api/sendNotification/?code=NLQP2dUw0xv-ZdIqgADr_WdqtwMYGzYNHm9tZ-EvQ8ajAzFu6Z2aTQ==&emails=andriej.sazanowicz@dnv.com
+  secretRef:
+    name: msteams-endpoint
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: msteams-endpoint
+  namespace: podinfo
+stringData:
+    address: https://dnv.webhook.office.com/webhookb2/4b31200c-ced7-4b3e-9d46-45fae3c13d3e@adf10e2b-b6e9-41d6-be2f-c12bb566019c/IncomingWebhook/82cf9ad1a88e4eee84e4614f9e90a050/45152777-d411-484d-bb6d-a8643c7b6dcd
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Alert
